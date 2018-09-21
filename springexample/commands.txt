@@ -1,0 +1,3 @@
+
+aws cloudformation package --template-file sam.yaml --output-template-file output-sam.yaml --s3-bucket spring-lambda-configuration
+ aws cloudformation deploy --template-file output-sam.yaml --stack-name sprint-demo-lambda --capabilities CAPABILITY_IAM

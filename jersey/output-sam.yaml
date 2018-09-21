@@ -1,0 +1,26 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Serverless Jersey API - my.jersey.aws.lambda::my-service
+Outputs:
+  MyServiceApi:
+    Description: URL for application
+    Export:
+      Name: JerseyLambdaApi
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping
+Resources:
+  MyServiceFunction:
+    Properties:
+      CodeUri: s3://jersey-configuration-lambda/42a33dc19af58e283980e7a063479d0c
+      Events:
+        GetResource:
+          Properties:
+            Method: any
+            Path: /{proxy+}
+          Type: Api
+      Handler: my.jersey.aws.lambda.StreamLambdaHandler::handleRequest
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Runtime: java8
+      Timeout: 15
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
