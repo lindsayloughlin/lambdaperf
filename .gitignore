@@ -1,0 +1,9 @@
+*/*.zip
+*/.idea/*
+*/node_modules/
+*/target/**
+*/node_modules/**
+python-xray/*
+xray-extract/*
+npmxray/*
+aws-serverless-express
